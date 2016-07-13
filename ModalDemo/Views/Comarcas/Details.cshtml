@@ -1,0 +1,30 @@
+﻿@model ModalDemo.Models.Comarca
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Comarca</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        
+    </dl>
+    <h3>Varas</h3>
+    <ul>
+        @foreach (var item in Model.Varas)
+        {
+            <li>@item.Nome</li>
+        }
+    </ul>
+</div>

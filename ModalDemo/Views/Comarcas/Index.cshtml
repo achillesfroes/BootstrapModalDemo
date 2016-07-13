@@ -1,0 +1,64 @@
+﻿@model IEnumerable<ModalDemo.Models.Comarca>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }, new { @class= "btn btn-warning" }) |
+            <a href="#" class="btn btn-default btnDetalhes" data-value="@item.Id">Details</a> |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id }, new { @class = "btn btn-danger" })
+        </td>
+    </tr>
+}
+</table>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div id="teste"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            
+            $.ajaxSetup({ cache: false });
+
+            $(".btnDetalhes").click(function () {
+                
+                var id = $(this).data("value");
+
+                $("#teste").load("/Comarcas/Details/" + id, function () {
+                    $('#myModal').modal("show");
+                });
+            });
+        });
+
+    </script>
+
+}
